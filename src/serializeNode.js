@@ -1,5 +1,9 @@
 'use strict';
 
+let {
+    getDisplayText
+} = require('page-text');
+
 let serializeNode = (node, opts = {}) => {
     let attributes = {};
 
@@ -14,8 +18,9 @@ let serializeNode = (node, opts = {}) => {
         index: getOrder(node),
         attributes
     };
-    if(opts.textContent) {
-        ret.textContent = node.textContent;
+
+    if (opts.textContent) {
+        ret.textContent = getDisplayText(node);
     }
     return ret;
 };
