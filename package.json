@@ -23,7 +23,8 @@
         "url": "https://github.com/LoveKino/serialize-front/issues"
     },
     "homepage": "https://github.com/LoveKino/serialize-front#readme",
-    "dependencies": {
+    "dependencies": {},
+    "link_dependencies": {
         "page-text": "~0.0.1"
     }
 }
