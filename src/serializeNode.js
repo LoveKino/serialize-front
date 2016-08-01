@@ -4,6 +4,8 @@ let {
     getDisplayText
 } = require('page-text');
 
+let serializeStyle = require('./serializeStyle');
+
 let serializeNode = (node, opts = {}) => {
     let attributes = {};
 
@@ -22,6 +24,11 @@ let serializeNode = (node, opts = {}) => {
     if (opts.textContent) {
         ret.textContent = getDisplayText(node);
     }
+
+    if (opts.style) {
+        ret.style = serializeStyle(node);
+    }
+
     return ret;
 };
 
