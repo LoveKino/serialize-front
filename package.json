@@ -25,6 +25,7 @@
     "homepage": "https://github.com/LoveKino/serialize-front#readme",
     "dependencies": {},
     "link_dependencies": {
-        "page-text": "~0.0.1"
+        "page-text": "~0.0.1",
+        "basetype": "~0.0.1"
     }
 }
