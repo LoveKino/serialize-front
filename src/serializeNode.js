@@ -6,7 +6,7 @@ let {
 
 let serializeStyle = require('./serializeStyle');
 
-let serializeStructure = require('./serializaNodeStructure');
+let serializeStructure = require('./serializeNodeStructure');
 
 module.exports = (node, opts = {}) => {
     let ret = serializeStructure(node);
