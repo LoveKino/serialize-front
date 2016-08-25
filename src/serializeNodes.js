@@ -1,6 +1,6 @@
 'use strict';
 
-let serializeStructure = require('./serializaNodeStructure');
+let serializeStructure = require('./serializeNodeStructure');
 
 let serializeStyle = require('./serializeStyle');
 
