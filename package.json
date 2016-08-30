@@ -26,6 +26,7 @@
     "dependencies": {},
     "link_dependencies": {
         "page-text": "~0.0.1",
-        "basetype": "~0.0.1"
+        "basetype": "~0.0.1",
+        "idgener": "~0.0.1"
     }
 }

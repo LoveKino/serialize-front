@@ -4,19 +4,20 @@ let serializeStructure = require('./serializeNodeStructure');
 
 let serializeStyle = require('./serializeStyle');
 
+let idgener = require('idgener');
+
 let {
     getDisplayText
 } = require('page-text');
 
 let cache = () => {
     let hashKey = '__hash_key__';
-    let count = 0;
     let map = {};
 
     let setCache = (node, name, value) => {
         let key = null;
         if (!node[hashKey]) {
-            key = count++;
+            key = idgener();
             node[hashKey] = key;
         } else {
             key = node[hashKey];
