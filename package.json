@@ -1,6 +1,6 @@
 {
   "name": "serialize-front",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "serialize front element, like node, event, path etc",
   "main": "index.js",
   "scripts": {
