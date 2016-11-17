@@ -2,6 +2,7 @@
 
 module.exports = (node) => {
     if (node === document) return null;
+    let bound = node.getBoundingClientRect();
     return {
         style: window.getComputedStyle ?
             stylesToMap(window.getComputedStyle(node)) : {},
@@ -17,7 +18,15 @@ module.exports = (node) => {
             offsetWidth: node.offsetWidth,
             offsetHeight: node.offsetHeight,
             clientWidth: node.clientWidth,
-            clientHeight: node.clientHeight
+            clientHeight: node.clientHeight,
+            rect: {
+                bottom: bound.bottom,
+                top: bound.top,
+                left: bound.left,
+                right: bound.right,
+                height: bound.height,
+                width: bound.width
+            }
         }
     };
 };
