@@ -1,6 +1,6 @@
 {
   "name": "serialize-front",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "serialize front element, like node, event, path etc",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/LoveKino/serialize-front#readme",
   "dependencies": {
-    "basetype": "^0.1.0",
+    "basetype": "^0.1.3",
+    "bolzano": "0.0.4",
     "idgener": "0.0.1",
     "page-text": "0.0.1"
   }

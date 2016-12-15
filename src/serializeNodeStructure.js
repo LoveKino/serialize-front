@@ -1,21 +1,14 @@
 'use strict';
 
-module.exports = (node) => {
-    let attributes = {};
+let getAttributes = require('./getAttributes');
 
-    let nodeAttribute = node.attributes || [];
-    for (let i = 0; i < nodeAttribute.length; i++) {
-        let attr = node.attributes[i];
-        attributes[attr.nodeName] = attr.nodeValue;
-    }
-    let ret = {
-        tagName: node.tagName,
+module.exports = (node) => {
+    return {
+        tagName: node.tagName || node.nodeName,
         nodeType: node.nodeType,
         index: getOrder(node),
-        attributes
+        attributes: getAttributes(node)
     };
-
-    return ret;
 };
 
 let getOrder = (node) => {

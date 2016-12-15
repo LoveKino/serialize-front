@@ -1,15 +1,32 @@
 'use strict';
 
+let {
+    reduce
+} = require('bolzano');
+
+// only some important styles because of performance consideration
+const STYLE_PROPS = ['color', 'background-color', 'display', 'visibility', 'content', 'font-size'];
+
+let getStyleMap = (styles) => {
+    if (!styles) return {};
+
+    return reduce(STYLE_PROPS, (prev, name) => {
+        prev[name] = styles.getPropertyValue(name);
+        return prev;
+    }, {});
+};
+
 module.exports = (node) => {
     if (node === document) return null;
     let bound = node.getBoundingClientRect();
+    let computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : null;
+    let computedBeforeStyle = window.getComputedStyle ? window.getComputedStyle(node, ':before') : null;
+    let computedAfterStyle = window.getComputedStyle ? window.getComputedStyle(node, ':after') : null;
+
     return {
-        style: window.getComputedStyle ?
-            stylesToMap(window.getComputedStyle(node)) : {},
-        beforeStyle: window.getComputedStyle ?
-            stylesToMap(window.getComputedStyle(node), ':before') : {},
-        afterStyle: window.getComputedStyle ?
-            stylesToMap(window.getComputedStyle(node), ':after') : {},
+        style: getStyleMap(computedStyle),
+        beforeStyle: getStyleMap(computedBeforeStyle),
+        afterStyle: getStyleMap(computedAfterStyle),
         shape: {
             offsetLeft: node.offsetLeft,
             offsetTop: node.offsetTop,
@@ -29,13 +46,4 @@ module.exports = (node) => {
             }
         }
     };
-};
-
-let stylesToMap = (styles) => {
-    let styleMap = {};
-    for (let i = 0; i < styles.length; i++) {
-        let name = styles[i];
-        styleMap[name] = styles[name];
-    }
-    return styleMap;
 };
