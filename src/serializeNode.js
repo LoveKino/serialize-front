@@ -16,7 +16,7 @@ module.exports = (node, opts = {}) => {
     }
 
     if (opts.style) {
-        ret.style = serializeStyle(node);
+        ret.style = serializeStyle(node, opts.styleOption);
     }
 
     return ret;

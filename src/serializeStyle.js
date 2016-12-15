@@ -7,16 +7,17 @@ let {
 // only some important styles because of performance consideration
 const STYLE_PROPS = ['color', 'background-color', 'display', 'visibility', 'content', 'font-size'];
 
-let getStyleMap = (styles) => {
+let getStyleMap = (styles, props) => {
     if (!styles) return {};
 
-    return reduce(STYLE_PROPS, (prev, name) => {
+    return reduce(props, (prev, name) => {
         prev[name] = styles.getPropertyValue(name);
         return prev;
     }, {});
 };
 
-module.exports = (node) => {
+module.exports = (node, props) => {
+    props = props || STYLE_PROPS;
     if (node === document) return null;
     let bound = node.getBoundingClientRect();
     let computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : null;
@@ -24,9 +25,9 @@ module.exports = (node) => {
     let computedAfterStyle = window.getComputedStyle ? window.getComputedStyle(node, ':after') : null;
 
     return {
-        style: getStyleMap(computedStyle),
-        beforeStyle: getStyleMap(computedBeforeStyle),
-        afterStyle: getStyleMap(computedAfterStyle),
+        style: getStyleMap(computedStyle, props),
+        beforeStyle: getStyleMap(computedBeforeStyle, props),
+        afterStyle: getStyleMap(computedAfterStyle, props),
         shape: {
             offsetLeft: node.offsetLeft,
             offsetTop: node.offsetTop,
